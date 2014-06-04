@@ -8,6 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class AttendanceReport {
     public static void main(String[] args) {
     Workbook wb = new XSSFWorkbook();
-        
+
     }
 }
