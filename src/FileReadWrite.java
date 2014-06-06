@@ -1,7 +1,8 @@
 /**
  * Created by Dima on 05.06.14.
  */
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,23 +13,20 @@ public class FileReadWrite {
 
     private FileOutputStream fileOutputStream;
 
-    private String path;
-
-    public FileReadWrite(String path) {
-        this.path = path;
+    public FileReadWrite() {
+        //this.path = wb;
     }
 
-    public FileReadWrite(FileInputStream fileInputStream) {
-        this.fileInputStream = fileInputStream;
-    }
-
-    public void read() throws IOException {
+    public Sheet read(String path) throws IOException, InvalidFormatException {
         fileInputStream = new FileInputStream(path);
+        Workbook wb = WorkbookFactory.create(fileInputStream);
         fileInputStream.close();
+        return wb.getSheetAt(0);
     }
 
-    public void write(Workbook workbook, String path) throws IOException {
+    public void write(Workbook wb, String path) throws IOException, InvalidFormatException {
         fileOutputStream = new FileOutputStream(path);
+        wb.write(fileOutputStream);
         fileInputStream.close();
     }
 }
