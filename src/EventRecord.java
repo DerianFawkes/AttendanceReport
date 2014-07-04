@@ -8,6 +8,5 @@ public class EventRecord extends Employee {
     enum Status {PERMIT, DENIED}
     String serialnumber;
     Date date;
-    Time time;
 
 }
