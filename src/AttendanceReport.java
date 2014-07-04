@@ -14,8 +14,14 @@ import java.io.IOException;
 public class AttendanceReport {
     public static void main(String[] args) throws IOException, InvalidFormatException{
 
+        DataBase dataBase;
+
         FileReadWrite fileReadWrite = new FileReadWrite();
-        fileReadWrite.read(".\\Report.xls");
+        dataBase = new DataBase(fileReadWrite.read(".\\Report.xls"));
+
+        dataBase.setDepartmentsNames();
+        dataBase.printDepartmentsNames();
+
 
     }
 }

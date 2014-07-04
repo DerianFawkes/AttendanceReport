@@ -17,11 +17,11 @@ public class FileReadWrite {
         //this.path = wb;
     }
 
-    public Sheet read(String path) throws IOException, InvalidFormatException {
+    public Workbook read(String path) throws IOException, InvalidFormatException {
         fileInputStream = new FileInputStream(path);
         Workbook wb = WorkbookFactory.create(fileInputStream);
         fileInputStream.close();
-        return wb.getSheetAt(0);
+        return wb;
     }
 
     public void write(Workbook wb, String path) throws IOException, InvalidFormatException {
