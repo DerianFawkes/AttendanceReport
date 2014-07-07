@@ -23,14 +23,18 @@ public class DataBase {
         this.workbook = workbook;
     }
 
-    public void setDepartmentsNames() {
+    public void fillDataBase() {
         departments = new ArrayList();
         Sheet sheet = workbook.getSheetAt(0);
 
         for (Row row : sheet) {
+            String[] cellsValue = new String[8];
+            for (Cell cell: row) {
+                int i = 0;
+                cellsValue[i++] = cell.getStringCellValue();
+            }
+
             boolean alreadyExists = false;
-            Cell cell = row.getCell(DEPARTMENTNAMES_COLUMN);
-            String cellValue = cell.getStringCellValue();
 
             for (Department item :departments) {
                 String depname = item.getName();
@@ -48,4 +52,6 @@ public class DataBase {
     for (Department item : departments)
         System.out.println(item.getName());
     }
+
+    private boolean dep
 }
