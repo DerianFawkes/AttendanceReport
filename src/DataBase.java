@@ -7,13 +7,10 @@ import java.util.ArrayList;
  * Created by Dima on 06.06.14.
  */
 public class DataBase {
-    static final int STATUS_COLUMN = 1;
-    static final int EMPLOYEE_COLUMN = 3;
-    static final int POST_COLUMN = 4;
+
     static final int DEPARTMENTNAMES_COLUMN = 5;
-    static final int SERIALNUMBER_COLUMN = 6;
-    static final int DATE_COLUMN = 7;
-    static final int TIME_COLUMN = 8;
+    static final int START_ROW_INDEX = 1;
+
     
     Workbook workbook;
 
@@ -26,32 +23,62 @@ public class DataBase {
     public void fillDataBase() {
         departments = new ArrayList();
         Sheet sheet = workbook.getSheetAt(0);
-
-        for (Row row : sheet) {
-            String[] cellsValue = new String[8];
+        int lastRowIndex = sheet.getLastRowNum();
+        for (int i = START_ROW_INDEX; i < lastRowIndex; i++) {
+            Row row = sheet.getRow(i);
+            String[] cellsValue = new String[9];
+            int j = 0;
             for (Cell cell: row) {
-                int i = 0;
-                cellsValue[i++] = cell.getStringCellValue();
+                cellsValue[j] = cell.getStringCellValue();
+                j++;
             }
 
-            boolean alreadyExists = false;
-
-            for (Department item :departments) {
-                String depname = item.getName();
-                if (depname.equals(cellValue)) {
-                    alreadyExists = true;
-                }
+            int checkresult = checkDepartment(cellsValue[DEPARTMENTNAMES_COLUMN]);
+            if (checkresult == -1) {
+                Department newDepartment = new Department(cellsValue[DEPARTMENTNAMES_COLUMN]);
+                newDepartment.addEmployeeAndRecord(cellsValue);
+                departments.add(newDepartment);
             }
-            if (alreadyExists != true) {
-                departments.add(new Department(cellValue));
+            else {
+                departments.get(checkresult).addEmployeeAndRecord(cellsValue);
             }
         }
     }
 
-    public void printDepartmentsNames() {
-    for (Department item : departments)
-        System.out.println(item.getName());
+    private int checkDepartment (String department) {
+        int i = 0;
+        for (Department item : departments) {
+            String depname = item.getName();
+            if (depname.equals(department)) {
+                return i;
+            }
+            i++;
+        }
+    return -1;
     }
 
-    private boolean dep
+    public void printDepartmentsNames() {
+        for (Department item : departments) {
+            System.out.println(item.getName());
+        }
+
+
+    }
+
+    public void printDepartmentsEmployees(String depname) {
+        for (Department item : departments) {
+            if (depname.equals(item.getName())) {
+                item.printEmployees();
+            }
+        }
+
+
+    }
+
+    public void eventTest () {
+        //String[] zzz = {"08.07.2014",
+        //departments.get(1).employers.get(1).addRecord();
+        departments.get(1).employers.get(1).printEvents();
+    }
+
 }

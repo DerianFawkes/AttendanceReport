@@ -4,22 +4,23 @@ import java.util.ArrayList;
  * Created by Dima on 04.07.14.
  */
 public class Employee {
+    static final int STATUS_COLUMN = 1;
+    static final int DATE_COLUMN = 7;
+    static final int TIME_COLUMN = 8;
+
     private String name;
     private String post;
     private String serialNumber;
+    private Department department;
 
-    ArrayList<EventRecord> eventsRecords;
+    ArrayList<EventRecord> eventRecords;
 
-    public Employee () {
-        setName("default");
-        setPost("default");
-        setSerialNumber("default");
-    }
-
-    public Employee (String serialNumber, String name, String post) {
+    public Employee (String serialNumber, String name, String post, Department department) {
         setSerialNumber(serialNumber);
         setName(name);
         setPost(post);
+        setDepartment(department);
+        eventRecords = new ArrayList<EventRecord>();
     }
 
     public String getName() {
@@ -46,7 +47,21 @@ public class Employee {
         this.serialNumber = serialNumber;
     }
 
-    public void addEventRecord(String status, String date, String time) {
-        eventsRecords.add(new EventRecord(status, date, time));
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public void addRecord(String[] cellsValue) {
+        eventRecords.add(new EventRecord(cellsValue[STATUS_COLUMN], cellsValue[DATE_COLUMN], cellsValue[TIME_COLUMN], this));
+    }
+
+    public void printEvents () {
+        for (EventRecord item : eventRecords) {
+            System.out.println(item.toString());
+        }
     }
 }

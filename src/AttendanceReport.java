@@ -19,9 +19,10 @@ public class AttendanceReport {
         FileReadWrite fileReadWrite = new FileReadWrite();
         dataBase = new DataBase(fileReadWrite.read(".\\Report.xls"));
 
-        //dataBase.setDepartmentsNames();
-        //dataBase.printDepartmentsNames();
-
+        dataBase.fillDataBase();
+        dataBase.printDepartmentsNames();
+        dataBase.printDepartmentsEmployees("IT-ОТДЕЛ");
+        dataBase.eventTest();
 
     }
 }

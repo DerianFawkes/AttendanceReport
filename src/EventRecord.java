@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -5,14 +6,16 @@ import java.util.GregorianCalendar;
  */
 public class EventRecord {
     //static final String ENTERDENIED = "Вход запрещен";
-    static final String ENTERPERMIT = "Вход разрешен";
+    static final String ENTERPERMIT = "Вход разрешён";
     //static final String EXITDENIED = "Выход запрещен";
-    static final String EXITPERMIT = "Выход разрешен";
-    enum Status {ENTER, EXIT}
-    Status status;
-    private GregorianCalendar dateAndTime;
+    static final String EXITPERMIT = "Выход разрешён";
 
-    public EventRecord(String status, String date, String time) {
+    enum Status {ENTER, EXIT}
+    private Status status;
+    private GregorianCalendar dateAndTime;
+    private Employee employee;
+
+    public EventRecord(String status, String date, String time, Employee employee) {
         if (status == ENTERPERMIT) {
             this.status = Status.ENTER;
         }
@@ -20,6 +23,7 @@ public class EventRecord {
             this.status = Status.EXIT;
         }
         setDateAndTime(date, time);
+        this.employee = employee;
     }
 
     public GregorianCalendar getDateAndTime() {
@@ -28,6 +32,14 @@ public class EventRecord {
 
     public void setDateAndTime(GregorianCalendar dateAndTime) {
         this.dateAndTime = dateAndTime;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public void setDateAndTime(String date, String time) {
@@ -63,5 +75,11 @@ public class EventRecord {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String toString() {
+        String string;
+        string = Integer.toString(getDateAndTime().get(Calendar.DATE)) + getStatusString();
+        return string;
     }
 }
