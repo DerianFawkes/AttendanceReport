@@ -61,7 +61,7 @@ public class Employee {
 
     public void printEvents () {
         for (EventRecord item : eventRecords) {
-            System.out.println(item.toString());
+            item.printFields();
         }
     }
 }

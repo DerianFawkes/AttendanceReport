@@ -50,12 +50,12 @@ public class EventRecord {
         int hours;
         int minutes;
 
-        day = Integer.parseInt(date.substring(0,1));
-        month = Integer.parseInt(date.substring(3, 4));
-        year = Integer.parseInt(date.substring(6, 9));
+        day = Integer.parseInt(date.substring(0,2));
+        month = Integer.parseInt(date.substring(3, 5));
+        year = Integer.parseInt(date.substring(6, 10));
 
-        hours = Integer.parseInt(time.substring(0,1));
-        minutes = Integer.parseInt(time.substring(3,4));
+        hours = Integer.parseInt(time.substring(0,2));
+        minutes = Integer.parseInt(time.substring(3,5));
 
                 setDateAndTime(new GregorianCalendar(year, month, day, hours, minutes));
     }
@@ -81,5 +81,11 @@ public class EventRecord {
         String string;
         string = Integer.toString(getDateAndTime().get(Calendar.DATE)) + getStatusString();
         return string;
+    }
+
+    public void printFields () {
+        System.out.print(getDateAndTime().get(Calendar.DAY_OF_MONTH) + " ");
+        System.out.print(getDateAndTime().get(Calendar.MONTH) + " ");
+        System.out.println(getDateAndTime().get(Calendar.YEAR) + " ");
     }
 }
