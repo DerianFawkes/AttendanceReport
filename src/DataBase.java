@@ -81,4 +81,44 @@ public class DataBase {
         departments.get(1).employers.get(1).printEvents();
     }
 
+    public Workbook exportByDepartment () {
+        Workbook wb = new XSSFWorkbook();
+
+        Sheet sheet;
+        Row row;
+        Cell cell;
+
+        CellStyle cs1 = wb.createCellStyle();
+        Font f1 = wb.createFont();
+        f1.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        f1.setFontHeightInPoints((short) 12);
+        cs1.setFont(f1);
+
+        CellStyle cs2 = wb.createCellStyle();
+        Font f2 = wb.createFont();
+        f2.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        f2.setFontHeightInPoints((short) 10);
+        cs2.setFont(f2);
+
+        CellStyle cs3 = wb.createCellStyle();
+        Font f3 = wb.createFont();
+        f3.setBoldweight(Font.BOLDWEIGHT_NORMAL);
+        f3.setFontHeightInPoints((short) 8);
+        cs3.setFont(f3);
+
+        sheet = wb.createSheet();
+        wb.setSheetName(0, "Отчет");
+
+        int rownum = 0;
+        row = sheet.createRow(rownum);
+        cell = row.createCell(3);
+        cell.setCellStyle(cs1);
+        cell.setCellValue("Отчет по посещаемости");
+
+        for (Department currentdep:departments) {
+
+        }
+        return wb;
+    }
+
 }

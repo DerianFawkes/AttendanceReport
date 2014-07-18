@@ -8,25 +8,18 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class FileReadWrite {
-    private FileInputStream fileInputStream;
+public abstract class FileReadWrite {
 
-    private FileOutputStream fileOutputStream;
-
-    public FileReadWrite() {
-        //this.path = wb;
-    }
-
-    public Workbook read(String path) throws IOException, InvalidFormatException {
-        fileInputStream = new FileInputStream(path);
+    public static Workbook read(String path) throws IOException, InvalidFormatException {
+        FileInputStream fileInputStream = new FileInputStream(path);
         Workbook wb = WorkbookFactory.create(fileInputStream);
         fileInputStream.close();
         return wb;
     }
 
-    public void write(Workbook wb, String path) throws IOException, InvalidFormatException {
-        fileOutputStream = new FileOutputStream(path);
+    public static void write(Workbook wb, String path) throws IOException, InvalidFormatException {
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
         wb.write(fileOutputStream);
-        fileInputStream.close();
+        fileOutputStream.close();
     }
 }
