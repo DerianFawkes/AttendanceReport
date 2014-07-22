@@ -1,3 +1,5 @@
+import org.apache.poi.ss.usermodel.Row;
+
 import java.util.ArrayList;
 
 /**
@@ -65,5 +67,15 @@ public class Employee {
         }
     }
 
+    public ArrayList<Row> sort() {
+        ArrayList<Row> rows= new ArrayList<Row>();
+        Row row = new Row();
+        for (EventRecord item:eventRecords) {
+            if (item.getStatusString().equals(item.ENTERPERMIT)) {
+
+            }
+        }
+        return rows;
+    }
 
 }

@@ -15,15 +15,13 @@ public class AttendanceReport {
     public static void main(String[] args) throws IOException, InvalidFormatException{
 
         DataBase dataBase;
+        String destinationFolder = ".\\";
 
         dataBase = new DataBase(FileReadWrite.read(".\\Report.xls"));
 
 
 
         dataBase.fillDataBase();
-        dataBase.printDepartmentsNames();
-        dataBase.printDepartmentsEmployees("IT-ОТДЕЛ");
-        dataBase.eventTest();
-
+        dataBase.exportReports(destinationFolder);
     }
 }
