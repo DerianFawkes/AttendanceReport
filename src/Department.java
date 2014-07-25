@@ -70,18 +70,21 @@ public class Department {
         Font f1 = wb.createFont();
         f1.setBoldweight(Font.BOLDWEIGHT_BOLD);
         f1.setFontHeightInPoints((short) 12);
+        f1.setFontName("Arial");
         cs1.setFont(f1);
 
         CellStyle cs2 = wb.createCellStyle();
         Font f2 = wb.createFont();
         f2.setBoldweight(Font.BOLDWEIGHT_BOLD);
         f2.setFontHeightInPoints((short) 10);
+        f2.setFontName("Arial");
         cs2.setFont(f2);
 
         CellStyle cs3 = wb.createCellStyle();
         Font f3 = wb.createFont();
         f3.setBoldweight(Font.BOLDWEIGHT_NORMAL);
         f3.setFontHeightInPoints((short) 8);
+        f3.setFontName("Arial");
         cs3.setFont(f3);
 
         sheet = wb.createSheet();
@@ -93,7 +96,14 @@ public class Department {
         cell.setCellStyle(cs1);
         cell.setCellValue("Отчет по посещаемости");
 
+        for (Employee item : employers) {
+            item.addContentToSheet(sheet, cs2, cs3);
+        }
+        return wb;
+    }
 
+    public Workbook createReportForStorage () {
+        Workbook wb = new XSSFWorkbook();
         return wb;
     }
 }

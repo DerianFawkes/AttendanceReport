@@ -85,9 +85,15 @@ public class DataBase {
 
     public void exportReports (String destinationFolder) throws IOException, InvalidFormatException {
         for (Department currentdep:departments) {
-            Workbook wb = currentdep.createReportByDepartment();
-            String path = destinationFolder + currentdep.getName() + ".xlsx";
-            FileReadWrite.write(wb, path);
+            if (!currentdep.getName().equals("СКЛАД")) {
+                Workbook wb = currentdep.createReportByDepartment();
+                String path = destinationFolder + currentdep.getName() + ".xlsx";
+                FileReadWrite.write(wb, path);
+            } else {
+                Workbook wb = currentdep.createReportForStorage();
+                String path = destinationFolder + currentdep.getName() + ".xlsx";
+                FileReadWrite.write(wb, path);
+            }
         }
     }
 

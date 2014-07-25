@@ -16,7 +16,7 @@ public class EventRecord {
     private Employee employee;
 
     public EventRecord(String status, String date, String time, Employee employee) {
-        if (status == ENTERPERMIT) {
+        if (status.equals(ENTERPERMIT)) {
             this.status = Status.ENTER;
         }
         else {
@@ -73,6 +73,16 @@ public class EventRecord {
         }
     }
 
+    public boolean isStatusENTER() {
+        boolean flag;
+        if (getStatus().equals(Status.ENTER) ) {
+            return true;
+        }
+        return false;
+    }
+
+
+
     public void setStatus(Status status) {
         this.status = status;
     }
@@ -87,5 +97,39 @@ public class EventRecord {
         System.out.print(getDateAndTime().get(Calendar.DAY_OF_MONTH) + " ");
         System.out.print(getDateAndTime().get(Calendar.MONTH) + " ");
         System.out.println(getDateAndTime().get(Calendar.YEAR) + " ");
+    }
+
+    public String getStringTime () {
+        String string;
+        string = dateAndTime.get(Calendar.HOUR)+":"+dateAndTime.get(Calendar.MINUTE);
+        return string;
+    }
+
+    public String getStringDate () {
+        String string;
+        string = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH) + "." + dateAndTime.get(Calendar.YEAR);
+        return string;
+    }
+
+    public boolean isAfter (int hours, int minutes) {
+        int h = dateAndTime.get(Calendar.HOUR);
+        int m = dateAndTime.get(Calendar.MINUTE);
+        System.out.println(h+":"+m);
+        if (h > hours && m > minutes) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean isBefore (int hours, int minutes) {
+        int h = dateAndTime.get(Calendar.HOUR);
+        int m = dateAndTime.get(Calendar.MINUTE);
+        System.out.println(h+":"+m);
+        if (h <= hours && m <= minutes) {
+            return true;
+        }
+        else
+            return false;
     }
 }
