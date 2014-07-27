@@ -17,11 +17,12 @@ public class AttendanceReport {
         DataBase dataBase;
         String destinationFolder = ".\\";
 
-        dataBase = new DataBase(FileReadWrite.read(".\\Report.xls"));
+        dataBase = new DataBase(FileReadWrite.read("F:\\Users\\Fawkes\\IdeaProjects\\AttendanceReport\\src\\Report.xls"));
 
 
 
         dataBase.fillDataBase();
-        dataBase.exportReports(destinationFolder);
+        //dataBase.exportReports(destinationFolder);
+        dataBase.eventTest();
     }
 }

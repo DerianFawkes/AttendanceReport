@@ -50,14 +50,14 @@ public class EventRecord {
         int hours;
         int minutes;
 
-        day = Integer.parseInt(date.substring(0,2));
+        day = Integer.parseInt(date.substring(1,2));
         month = Integer.parseInt(date.substring(3, 5));
         year = Integer.parseInt(date.substring(6, 10));
 
-        hours = Integer.parseInt(time.substring(0,2));
+        hours = Integer.parseInt(time.substring(1,2));
         minutes = Integer.parseInt(time.substring(3,5));
 
-                setDateAndTime(new GregorianCalendar(year, month, day, hours, minutes));
+        setDateAndTime(new GregorianCalendar(year, month, day, hours, minutes));
     }
 
     public Status getStatus() {
@@ -96,12 +96,14 @@ public class EventRecord {
     public void printFields () {
         System.out.print(getDateAndTime().get(Calendar.DAY_OF_MONTH) + " ");
         System.out.print(getDateAndTime().get(Calendar.MONTH) + " ");
-        System.out.println(getDateAndTime().get(Calendar.YEAR) + " ");
+        System.out.print(getDateAndTime().get(Calendar.YEAR) + " ");
+        System.out.print(getDateAndTime().get(Calendar.HOUR_OF_DAY) + " ");
+        System.out.println(getDateAndTime().get(Calendar.MINUTE) + " ");
     }
 
     public String getStringTime () {
         String string;
-        string = dateAndTime.get(Calendar.HOUR)+":"+dateAndTime.get(Calendar.MINUTE);
+        string = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
         return string;
     }
 
@@ -112,10 +114,10 @@ public class EventRecord {
     }
 
     public boolean isAfter (int hours, int minutes) {
-        int h = dateAndTime.get(Calendar.HOUR);
+        int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
         System.out.println(h+":"+m);
-        if (h > hours && m > minutes) {
+        if (h >= hours && m >= minutes) {
             return true;
         }
         else
@@ -123,7 +125,7 @@ public class EventRecord {
     }
 
     public boolean isBefore (int hours, int minutes) {
-        int h = dateAndTime.get(Calendar.HOUR);
+        int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
         System.out.println(h+":"+m);
         if (h <= hours && m <= minutes) {

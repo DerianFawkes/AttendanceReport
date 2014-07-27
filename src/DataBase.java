@@ -78,9 +78,15 @@ public class DataBase {
     }
 
     public void eventTest () {
-        //String[] zzz = {"08.07.2014",
-        //departments.get(1).employers.get(1).addRecord();
-        departments.get(1).employers.get(1).printEvents();
+        for(Department dep:departments) {
+            System.out.println(dep.getName());
+            for(Employee emp: dep.employers) {
+                System.out.println(emp.getName());
+                for(EventRecord evt: emp.eventRecords) {
+                    evt.printFields();
+                }
+            }
+        }
     }
 
     public void exportReports (String destinationFolder) throws IOException, InvalidFormatException {

@@ -96,7 +96,7 @@ public class Employee {
 //            compareDate1.set(Calendar.MINUTE, 45);
 //            compareDate2.set(Calendar.HOUR, 10);
 //            compareDate2.set(Calendar.MINUTE, 31);
-            if (item.isStatusENTER() && item.isAfter(9, 45) && item.isBefore(10, 30)) {
+            if (item.isStatusENTER() && item.isAfter(9, 46) && item.isBefore(10, 30)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
@@ -122,7 +122,7 @@ public class Employee {
 //            compareDate1.set(Calendar.MINUTE, 30);
 //            compareDate2.set(Calendar.HOUR, 23);
 //            compareDate2.set(Calendar.MINUTE, 59);
-            if (item.isStatusENTER() && item.isAfter(10, 30) && item.isBefore(13, 30)) {
+            if (item.isStatusENTER() && item.isAfter(10, 31) && item.isBefore(13, 30)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
@@ -148,7 +148,7 @@ public class Employee {
 //            compareDate1.set(Calendar.MINUTE, 30);
 //            compareDate2.set(Calendar.HOUR, 13);
 //            compareDate2.set(Calendar.MINUTE, 31);
-            if (item.isStatusENTER() && item.isAfter(13, 30) && item.isBefore(23, 59)) {
+            if (item.isStatusENTER() && item.isAfter(13, 31) && item.isBefore(23, 59)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
