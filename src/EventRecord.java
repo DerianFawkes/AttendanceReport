@@ -50,12 +50,12 @@ public class EventRecord {
         int hours;
         int minutes;
 
-        day = Integer.parseInt(date.substring(1,2));
+        day = Integer.parseInt(date.substring(0,2));
         month = Integer.parseInt(date.substring(3, 5));
-        year = Integer.parseInt(date.substring(6, 10));
+        year = Integer.parseInt(date.substring(6));
 
-        hours = Integer.parseInt(time.substring(1,2));
-        minutes = Integer.parseInt(time.substring(3,5));
+        hours = Integer.parseInt(time.substring(0,2));
+        minutes = Integer.parseInt(time.substring(3));
 
         setDateAndTime(new GregorianCalendar(year, month, day, hours, minutes));
     }
@@ -116,22 +116,26 @@ public class EventRecord {
     public boolean isAfter (int hours, int minutes) {
         int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
-        System.out.println(h+":"+m);
-        if (h >= hours && m >= minutes) {
+        if ((h*60+m) >= (hours*60+minutes)) {
+            System.out.println(h+":"+m+"after true"+hours+":"+minutes);
             return true;
         }
-        else
+        else {
+            System.out.println(h+":"+m+"after false"+hours+":"+minutes);
             return false;
+        }
     }
 
     public boolean isBefore (int hours, int minutes) {
         int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
-        System.out.println(h+":"+m);
-        if (h <= hours && m <= minutes) {
+        if ((h*60+m) <= (hours*60+minutes)) {
+            System.out.println(h+":"+m+"before true"+hours+":"+minutes);
             return true;
         }
-        else
+        else {
+            System.out.println(h+":"+m+"before false"+hours+":"+minutes);
             return false;
+        }
     }
 }

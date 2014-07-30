@@ -89,78 +89,61 @@ public class Employee {
         rowIndexBuff = lastrow;
         count = 0;
         for (EventRecord item: eventRecords) {
-//            GregorianCalendar dateAndTime = item.getDateAndTime();
-//            GregorianCalendar compareDate1 = item.getDateAndTime();
-//            GregorianCalendar compareDate2 = item.getDateAndTime();
-//            compareDate1.set(Calendar.HOUR, 9);
-//            compareDate1.set(Calendar.MINUTE, 45);
-//            compareDate2.set(Calendar.HOUR, 10);
-//            compareDate2.set(Calendar.MINUTE, 31);
+
             if (item.isStatusENTER() && item.isAfter(9, 46) && item.isBefore(10, 30)) {
                 row = sheet.createRow(++lastrow);
-                cell = row.createCell(4);
+                cell = row.createCell(3);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Дата:" + item.getStringDate());
-                cell = row.createCell(6);
+                cell = row.createCell(5);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Время:" + item.getStringTime());
                 count++;
             }
         }
-        sheet.getRow(rowIndexBuff).createCell(2).setCellValue("Опоздания от 16 минут до часа :" + count);
-        sheet.getRow(rowIndexBuff).createCell(2).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Опоздания от 16 минут до часа :" + count);
+
 
         //подсчет и вывод опозданий от часа до 4-х часов
         row = sheet.createRow(++lastrow);
         rowIndexBuff = lastrow;
         count = 0;
         for (EventRecord item: eventRecords) {
-//            GregorianCalendar dateAndTime = item.getDateAndTime();
-//            GregorianCalendar compareDate1 = item.getDateAndTime();
-//            GregorianCalendar compareDate2 = item.getDateAndTime();
-//            compareDate1.set(Calendar.HOUR, 13);
-//            compareDate1.set(Calendar.MINUTE, 30);
-//            compareDate2.set(Calendar.HOUR, 23);
-//            compareDate2.set(Calendar.MINUTE, 59);
             if (item.isStatusENTER() && item.isAfter(10, 31) && item.isBefore(13, 30)) {
                 row = sheet.createRow(++lastrow);
-                cell = row.createCell(4);
+                cell = row.createCell(3);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Дата:" + item.getStringDate());
-                cell = row.createCell(6);
+                cell = row.createCell(5);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Время:" + item.getStringTime());
                 count++;
             }
         }
-        sheet.getRow(rowIndexBuff).createCell(2).setCellValue("Опоздания от часа до 4-х часов :" + count);
-        sheet.getRow(rowIndexBuff).createCell(2).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Опоздания от часа до 4-х часов :" + count);
+
 
         //подсчет и вывод опозданий свыше 4-х часов
         row = sheet.createRow(++lastrow);
         rowIndexBuff = lastrow;
         count = 0;
         for (EventRecord item: eventRecords) {
-//            GregorianCalendar dateAndTime = item.getDateAndTime();
-//            GregorianCalendar compareDate1 = item.getDateAndTime();
-//            GregorianCalendar compareDate2 = item.getDateAndTime();
-//            compareDate1.set(Calendar.HOUR, 10);
-//            compareDate1.set(Calendar.MINUTE, 30);
-//            compareDate2.set(Calendar.HOUR, 13);
-//            compareDate2.set(Calendar.MINUTE, 31);
             if (item.isStatusENTER() && item.isAfter(13, 31) && item.isBefore(23, 59)) {
                 row = sheet.createRow(++lastrow);
-                cell = row.createCell(4);
+                cell = row.createCell(3);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Дата:" + item.getStringDate());
-                cell = row.createCell(6);
+                cell = row.createCell(5);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Время:" + item.getStringTime());
                 count++;
             }
         }
-        sheet.getRow(rowIndexBuff).createCell(2).setCellValue("Опоздания от часа до 4-х часов :" + count);
-        sheet.getRow(rowIndexBuff).createCell(2).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Опоздания от часа до 4-х часов :" + count);
+
 
 
         return sheet;
