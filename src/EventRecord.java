@@ -1,5 +1,7 @@
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * Created by Dima on 04.07.14.
@@ -81,6 +83,15 @@ public class EventRecord {
         return false;
     }
 
+    public boolean isWorkDay() {
+        if (dateAndTime.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
+                dateAndTime.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
 
     public void setStatus(Status status) {
@@ -103,13 +114,17 @@ public class EventRecord {
 
     public String getStringTime () {
         String string;
-        string = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
+        Formatter fmt = new Formatter();
+        fmt.format("%tH.%tM", dateAndTime,dateAndTime);
+        string = fmt.toString();
         return string;
     }
 
     public String getStringDate () {
         String string;
-        string = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH) + "." + dateAndTime.get(Calendar.YEAR);
+        Formatter fmt = new Formatter();
+        fmt.format("%td.%tm.%tY", dateAndTime,dateAndTime,dateAndTime);
+        string = fmt.toString();
         return string;
     }
 
@@ -117,11 +132,11 @@ public class EventRecord {
         int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
         if ((h*60+m) >= (hours*60+minutes)) {
-            System.out.println(h+":"+m+"after true"+hours+":"+minutes);
+            //System.out.println(h+":"+m+"after true"+hours+":"+minutes);
             return true;
         }
         else {
-            System.out.println(h+":"+m+"after false"+hours+":"+minutes);
+            //System.out.println(h+":"+m+"after false"+hours+":"+minutes);
             return false;
         }
     }
@@ -130,11 +145,11 @@ public class EventRecord {
         int h = dateAndTime.get(Calendar.HOUR_OF_DAY);
         int m = dateAndTime.get(Calendar.MINUTE);
         if ((h*60+m) <= (hours*60+minutes)) {
-            System.out.println(h+":"+m+"before true"+hours+":"+minutes);
+            //System.out.println(h+":"+m+"before true"+hours+":"+minutes);
             return true;
         }
         else {
-            System.out.println(h+":"+m+"before false"+hours+":"+minutes);
+            //System.out.println(h+":"+m+"before false"+hours+":"+minutes);
             return false;
         }
     }

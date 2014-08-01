@@ -72,6 +72,16 @@ public class Employee {
         }
     }
 
+    private GregorianCalendar getFirstDate () {
+        GregorianCalendar date = department.db.firstDate;
+        return date;
+    }
+
+    private GregorianCalendar getLastDate () {
+        GregorianCalendar date = department.db.lastDate;
+        return date;
+    }
+
     public Sheet addContentToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3) {
         int rowIndexBuff; //буфер индекса строки, чтобы добавить количество опозданий
         int count; //подсчет количества опозданий на определенное время
@@ -90,7 +100,7 @@ public class Employee {
         count = 0;
         for (EventRecord item: eventRecords) {
 
-            if (item.isStatusENTER() && item.isAfter(9, 46) && item.isBefore(10, 30)) {
+            if (item.isStatusENTER() && item.isWorkDay() && item.isAfter(9, 46) && item.isBefore(10, 30)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(3);
                 cell.setCellStyle(cs3);
@@ -110,7 +120,7 @@ public class Employee {
         rowIndexBuff = lastrow;
         count = 0;
         for (EventRecord item: eventRecords) {
-            if (item.isStatusENTER() && item.isAfter(10, 31) && item.isBefore(13, 30)) {
+            if (item.isStatusENTER() && item.isWorkDay() && item.isAfter(10, 31) && item.isBefore(13, 30)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(3);
                 cell.setCellStyle(cs3);
@@ -130,7 +140,7 @@ public class Employee {
         rowIndexBuff = lastrow;
         count = 0;
         for (EventRecord item: eventRecords) {
-            if (item.isStatusENTER() && item.isAfter(13, 31) && item.isBefore(23, 59)) {
+            if (item.isStatusENTER() && item.isWorkDay() && item.isAfter(13, 31) && item.isBefore(23, 59)) {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(3);
                 cell.setCellStyle(cs3);
@@ -144,7 +154,44 @@ public class Employee {
         sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
         sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Опоздания от часа до 4-х часов :" + count);
 
-
+        //Подсчет Невыходов
+        row = sheet.createRow(++lastrow);
+        rowIndexBuff = lastrow;
+        count = 0;
+        GregorianCalendar comparingDate = getFirstDate();
+        GregorianCalendar lastDate = getLastDate();
+        int n = 0;
+        do {
+            boolean found = false;
+            for (int i = n; i <= eventRecords.size(); i++)
+            {
+                if (eventRecords.get(i).isStatusENTER() &&
+                        comparingDate.get(Calendar.DAY_OF_YEAR) == eventRecords.get(i).getDateAndTime().get(Calendar.DAY_OF_YEAR)) {
+                    row = sheet.createRow(++lastrow);
+                    cell = row.createCell(3);
+                    cell.setCellValue(eventRecords.get(i).getStringDate());
+                    cell.setCellStyle(cs3);
+                    n = i;
+                    break;
+                }
+            }
+            count++;
+            comparingDate.add(Calendar.DAY_OF_YEAR, 1);
+        } while (comparingDate.get(Calendar.DAY_OF_YEAR) >= lastDate.get(Calendar.DAY_OF_YEAR) );
+        for (EventRecord item: eventRecords) {
+            if (item.isStatusENTER() && !item.isWorkDay() && item.isAfter(13, 31) && item.isBefore(23, 59)) {
+                row = sheet.createRow(++lastrow);
+                cell = row.createCell(3);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Дата:" + item.getStringDate());
+                cell = row.createCell(5);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Время:" + item.getStringTime());
+                count++;
+            }
+        }
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Невыходов:" + count);
 
         return sheet;
     }

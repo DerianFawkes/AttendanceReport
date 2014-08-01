@@ -4,14 +4,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Dima on 06.06.14.
  */
 public class DataBase {
-
     static final int DEPARTMENTNAMES_COLUMN = 5;
+    static final int DATE_COLUMN = 7;
     static final int START_ROW_INDEX = 1;
+    public final GregorianCalendar firstDate;
+    public final GregorianCalendar lastDate;
 
     
     Workbook workbook;
@@ -20,8 +24,27 @@ public class DataBase {
 
     public DataBase(Workbook workbook) {
         this.workbook = workbook;
+        String firstDateString;
+        String lastDateString;
+        int lastRow = workbook.getSheetAt(0).getLastRowNum();
+        firstDateString = workbook.getSheetAt(0).getRow(lastRow).getCell(DATE_COLUMN).getStringCellValue();
+        lastDateString = workbook.getSheetAt(0).getRow(START_ROW_INDEX).getCell(DATE_COLUMN).getStringCellValue();
+        firstDate = createFirstAndLastDate(firstDateString);
+        lastDate = createFirstAndLastDate(lastDateString);
     }
 
+    private GregorianCalendar createFirstAndLastDate(String date) {
+        GregorianCalendar gc;
+        int day;
+        int month;
+        int year;
+        day = Integer.parseInt(date.substring(0,2));
+        month = Integer.parseInt(date.substring(3, 5));
+        year = Integer.parseInt(date.substring(6));
+
+        gc = new GregorianCalendar(day, month, year);
+        return gc;
+    }
     public void fillDataBase() {
         departments = new ArrayList();
         Sheet sheet = workbook.getSheetAt(0);
@@ -37,7 +60,7 @@ public class DataBase {
 
             int checkresult = checkDepartment(cellsValue[DEPARTMENTNAMES_COLUMN]);
             if (checkresult == -1) {
-                Department newDepartment = new Department(cellsValue[DEPARTMENTNAMES_COLUMN]);
+                Department newDepartment = new Department(cellsValue[DEPARTMENTNAMES_COLUMN], this);
                 newDepartment.addEmployeeAndRecord(cellsValue);
                 departments.add(newDepartment);
             }

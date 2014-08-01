@@ -10,13 +10,15 @@ public class Department {
     static final int SERIALNUMBER_COLUMN = 6;
     static final int EMPLOYEE_COLUMN = 3;
     static final int POST_COLUMN = 4;
+    static DataBase db;
 
     String name;
     ArrayList<Employee> employers;
 
-    public Department (String name) {
+    public Department (String name, DataBase db) {
         setName(name);
         employers = new ArrayList<Employee>();
+        if (db == null)this.db = db;
     }
 
     public String getName() {
