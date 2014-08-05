@@ -53,7 +53,7 @@ public class EventRecord {
         int minutes;
 
         day = Integer.parseInt(date.substring(0,2));
-        month = Integer.parseInt(date.substring(3, 5));
+        month = Integer.parseInt(date.substring(3, 5))-1;
         year = Integer.parseInt(date.substring(6));
 
         hours = Integer.parseInt(time.substring(0,2));

@@ -10,7 +10,7 @@ public class Department {
     static final int SERIALNUMBER_COLUMN = 6;
     static final int EMPLOYEE_COLUMN = 3;
     static final int POST_COLUMN = 4;
-    static DataBase db;
+    static DataBase db = null;
 
     String name;
     ArrayList<Employee> employers;
@@ -101,6 +101,8 @@ public class Department {
         for (Employee item : employers) {
             item.addContentToSheet(sheet, cs2, cs3);
         }
+
+        sheet.autoSizeColumn(0);
         return wb;
     }
 
