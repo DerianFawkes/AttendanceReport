@@ -1,10 +1,8 @@
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,8 +12,8 @@ public class DataBase {
     static final int DEPARTMENTNAMES_COLUMN = 5;
     static final int DATE_COLUMN = 7;
     static final int START_ROW_INDEX = 1;
-    public final GregorianCalendar firstDate;
-    public final GregorianCalendar lastDate;
+    public static GregorianCalendar firstDate = null;
+    public static GregorianCalendar lastDate = null;
 
     
     Workbook workbook;
@@ -27,22 +25,30 @@ public class DataBase {
         String firstDateString;
         String lastDateString;
         int lastRow = workbook.getSheetAt(0).getLastRowNum();
-        firstDateString = workbook.getSheetAt(0).getRow(lastRow).getCell(DATE_COLUMN).getStringCellValue();
-        lastDateString = workbook.getSheetAt(0).getRow(START_ROW_INDEX).getCell(DATE_COLUMN).getStringCellValue();
-        firstDate = createFirstAndLastDate(firstDateString);
-        lastDate = createFirstAndLastDate(lastDateString);
+        lastDateString = workbook.getSheetAt(0).getRow(lastRow).getCell(DATE_COLUMN).getStringCellValue();
+        firstDateString = workbook.getSheetAt(0).getRow(START_ROW_INDEX).getCell(DATE_COLUMN).getStringCellValue();
+        firstDate = setFirstAndLastDate(firstDateString);
+        lastDate = setFirstAndLastDate(lastDateString);
     }
 
-    private GregorianCalendar createFirstAndLastDate(String date) {
+    public static GregorianCalendar getFirstDate() {
+        return firstDate;
+    }
+
+    public static GregorianCalendar getLastDate() {
+        return lastDate;
+    }
+
+    private GregorianCalendar setFirstAndLastDate(String date) {
         GregorianCalendar gc;
         int day;
         int month;
         int year;
         day = Integer.parseInt(date.substring(0,2));
-        month = Integer.parseInt(date.substring(3, 5));
+        month = Integer.parseInt(date.substring(3, 5))-1;
         year = Integer.parseInt(date.substring(6));
 
-        gc = new GregorianCalendar(day, month, year);
+        gc = new GregorianCalendar(year, month, day);
         return gc;
     }
     public void fillDataBase() {

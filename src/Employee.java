@@ -3,6 +3,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -74,16 +75,6 @@ public class Employee {
         }
     }
 
-    private GregorianCalendar getFirstDate () {
-        GregorianCalendar date = department.db.firstDate;
-        return date;
-    }
-
-    private GregorianCalendar getLastDate () {
-        GregorianCalendar date = department.db.lastDate;
-        return date;
-    }
-
     public Sheet addContentToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3) {
 
         int lastrow = sheet.getLastRowNum();
@@ -94,6 +85,12 @@ public class Employee {
         cell = row.createCell(1);
         cell.setCellStyle(cs2);
         cell.setCellValue(this.getName());
+        sheet.addMergedRegion(new CellRangeAddress(
+                1, //first row (0-based)
+                1, //last row  (0-based)
+                1, //first column (0-based)
+                2  //last column  (0-based)
+        ));
 
         //подсчет и вывод опозданий от 16 минут до часа
         sheet = countLatenessAndAddToSheet(sheet, cs2, cs3, 9, 46, 10, 30, "Опоздания от 16 минут до часа: ");
@@ -110,9 +107,9 @@ public class Employee {
 
     private Sheet countLatenessAndAddToSheet (Sheet sheet,  CellStyle cs2, CellStyle cs3, int timeH1, int timeM1, int timeH2, int timeM2, String text) {
 
-        int lastrow = sheet.getLastRowNum();
+        int lastrow = sheet.getLastRowNum()+1;
         int rowIndexBuff = lastrow; //буфер индекса строки, чтобы добавить количество опозданий
-        sheet.createRow(++lastrow);//оставляем строку пустой, чтобы добавить количество после подсчета
+        sheet.createRow(lastrow);//оставляем строку пустой, чтобы добавить количество после подсчета
         int count = 0; //подсчет количества опозданий на определенное время
         Row row;
         Cell cell;
@@ -122,10 +119,10 @@ public class Employee {
                 row = sheet.createRow(++lastrow);
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
-                cell.setCellValue("Дата:" + item.getStringDate());
+                cell.setCellValue("Дата: " + item.getStringDate());
                 cell = row.createCell(6);
                 cell.setCellStyle(cs3);
-                cell.setCellValue("Время:" + item.getStringTime());
+                cell.setCellValue("Время: " + item.getStringTime());
                 count++;
             }
         }
@@ -140,40 +137,38 @@ public class Employee {
     private Sheet countAbsence(Sheet sheet, CellStyle cs2, CellStyle cs3) {
         Row row;
         Cell cell;
-        int lastrow = sheet.getLastRowNum();
+        int lastrow = sheet.getLastRowNum()+1;
         int rowIndexBuff = lastrow;
-        sheet.createRow(++lastrow); //Оставляем строку пустой
+        sheet.createRow(lastrow); //Оставляем строку пустой
         int count = 0;
-        GregorianCalendar comparingDate = getFirstDate();
-        GregorianCalendar lastDate = getLastDate();
-        Formatter fmt = new Formatter();
+        GregorianCalendar comparingDate = DataBase.getFirstDate();
+        GregorianCalendar lastDate = DataBase.getLastDate();
+
         int n = 0;
         do {
             boolean found = false;
-            for (int i = n; i <= eventRecords.size(); i++)
+            for (int i = n; i < eventRecords.size(); i++)
             {
                 EventRecord er = eventRecords.get(i);
                 if (er.isStatusENTER() && comparingDate.get(Calendar.DAY_OF_YEAR) == er.getDateAndTime().get(Calendar.DAY_OF_YEAR)) {
-                    row = sheet.createRow(++lastrow);
-                    cell = row.createCell(3);
-                    cell.setCellValue(er.getStringDate());
-                    cell.setCellStyle(cs3);
                     n = i;
                     found = true;
                     break;
                 }
             }
             if (!found && comparingDate.get(Calendar.DAY_OF_WEEK) != 1 && comparingDate.get(Calendar.DAY_OF_WEEK) != 7) {
+                Formatter fmt = new Formatter();
                 fmt.format("%td.%tm.%tY", comparingDate,comparingDate,comparingDate);
                 row = sheet.createRow(++lastrow);
-                cell = row.createCell(3);
+                cell = row.createCell(4);
                 cell.setCellStyle(cs3);
-                cell.setCellValue("Дата:" + fmt.toString());
+                cell.setCellValue("Дата: " + fmt.toString());
+                fmt.close();
                 count++;
             }
 
             comparingDate.add(Calendar.DAY_OF_YEAR, 1);
-        } while (comparingDate.get(Calendar.DAY_OF_YEAR) >= lastDate.get(Calendar.DAY_OF_YEAR) );
+        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) );
 
         sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
         sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Невыходов: " + count);

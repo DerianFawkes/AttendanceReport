@@ -1,4 +1,5 @@
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.ArrayList;
@@ -94,9 +95,11 @@ public class Department {
 
         int rownum = 0;
         row = sheet.createRow(rownum);
-        cell = row.createCell(3);
+        cell = row.createCell(2);
         cell.setCellStyle(cs1);
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 2, 5));
         cell.setCellValue("Отчет по посещаемости");
+
 
         for (Employee item : employers) {
             item.addContentToSheet(sheet, cs2, cs3);

@@ -115,7 +115,7 @@ public class EventRecord {
     public String getStringTime () {
         String string;
         Formatter fmt = new Formatter();
-        fmt.format("%tH.%tM", dateAndTime,dateAndTime);
+        fmt.format("%tH:%tM", dateAndTime,dateAndTime);
         string = fmt.toString();
         return string;
     }
