@@ -90,6 +90,52 @@ public class Department {
         f3.setFontName("Arial");
         cs3.setFont(f3);
 
+        CellStyle cs4 = wb.createCellStyle();
+        cs4.setFont(f2);
+        cs4.setAlignment(CellStyle.ALIGN_CENTER);
+        cs4.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        cs4.setWrapText(true);
+        cs4.setBorderBottom(CellStyle.BORDER_THIN);
+        cs4.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        cs4.setBorderLeft(CellStyle.BORDER_THIN);
+        cs4.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        cs4.setBorderRight(CellStyle.BORDER_THIN);
+        cs4.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        cs4.setBorderTop(CellStyle.BORDER_THIN);
+        cs4.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
+        CellStyle cs5 = wb.createCellStyle();
+        Font f5 = wb.createFont();
+        f5.setBoldweight(Font.BOLDWEIGHT_BOLD);
+        f5.setFontHeightInPoints((short) 8);
+        f5.setFontName("Arial");
+        cs5.setFont(f5);
+        cs5.setAlignment(CellStyle.ALIGN_CENTER);
+        cs5.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        cs5.setBorderBottom(CellStyle.BORDER_THIN);
+        cs5.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        cs5.setBorderLeft(CellStyle.BORDER_THIN);
+        cs5.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        cs5.setBorderRight(CellStyle.BORDER_THIN);
+        cs5.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        cs5.setBorderTop(CellStyle.BORDER_THIN);
+        cs5.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
+        CellStyle cs6 = wb.createCellStyle();
+        Font f6 = wb.createFont();
+        f6.setBoldweight(Font.BOLDWEIGHT_NORMAL);
+        f6.setFontHeightInPoints((short) 8);
+        f6.setFontName("Arial");
+        cs6.setFont(f6);
+        cs6.setBorderBottom(CellStyle.BORDER_THIN);
+        cs6.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        cs6.setBorderLeft(CellStyle.BORDER_THIN);
+        cs6.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        cs6.setBorderRight(CellStyle.BORDER_THIN);
+        cs6.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        cs6.setBorderTop(CellStyle.BORDER_THIN);
+        cs6.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
         sheet = wb.createSheet();
         wb.setSheetName(0, "Отчет");
 
@@ -97,12 +143,12 @@ public class Department {
         row = sheet.createRow(rownum);
         cell = row.createCell(2);
         cell.setCellStyle(cs1);
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 2, 5));
+        sheet.addMergedRegion(new CellRangeAddress(rownum, rownum, 2, 5)); //CellRangeAddress.valueOf("$C$1:$F$1")
         cell.setCellValue("Отчет по посещаемости");
 
 
         for (Employee item : employers) {
-            item.addContentToSheet(sheet, cs2, cs3);
+            item.addContentToSheet(sheet, cs2, cs3, cs4, cs5, cs6);
         }
 
         sheet.autoSizeColumn(0);

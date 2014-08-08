@@ -76,8 +76,14 @@ public class EventRecord {
     }
 
     public boolean isStatusENTER() {
-        boolean flag;
         if (getStatus().equals(Status.ENTER) ) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isStatusEXIT() {
+        if (getStatus().equals(Status.EXIT) ) {
             return true;
         }
         return false;

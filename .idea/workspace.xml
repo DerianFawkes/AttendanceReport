@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c83bd3-24d5-4b71-a07f-cd654e125f9d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DataBase.java" afterPath="$PROJECT_DIR$/src/DataBase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Util.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Department.java" afterPath="$PROJECT_DIR$/src/Department.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Employee.java" afterPath="$PROJECT_DIR$/src/Employee.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EventRecord.java" afterPath="$PROJECT_DIR$/src/EventRecord.java" />
@@ -73,7 +73,7 @@
       <file leaf-file-name="AttendanceReport.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AttendanceReport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="31" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="578">
+            <state line="24" column="0" selection-start="659" selection-end="659" vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="408">
               <folding />
             </state>
           </provider>
@@ -82,7 +82,7 @@
       <file leaf-file-name="DataBase.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DataBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="56" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="2312">
+            <state line="134" column="1" selection-start="4324" selection-end="4324" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="2312">
               <folding>
                 <element signature="e#1164#1165#0" expanded="true" />
                 <element signature="e#1196#1197#0" expanded="true" />
@@ -93,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Department.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Department.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Department.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="8" selection-start="2746" selection-end="2746" vertical-scroll-proportion="0.56666666" vertical-offset="1377" max-vertical-offset="2006">
+            <state line="135" column="44" selection-start="4673" selection-end="4673" vertical-scroll-proportion="0.0" vertical-offset="1858" max-vertical-offset="2788">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,17 +104,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Employee.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Employee.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="36" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1632">
+            <state line="10" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.43589744" vertical-offset="0" max-vertical-offset="3366">
               <folding>
-                <element signature="e#1479#1480#0" expanded="true" />
-                <element signature="e#1512#1513#0" expanded="true" />
-                <element signature="e#1568#1569#0" expanded="true" />
-                <element signature="e#1612#1613#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#981#982#0" expanded="true" />
+                <element signature="e#1008#1009#0" expanded="true" />
+                <element signature="e#1048#1049#0" expanded="true" />
+                <element signature="e#1080#1081#0" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#1178#1179#0" expanded="true" />
+                <element signature="e#1210#1211#0" expanded="true" />
+                <element signature="e#1249#1250#0" expanded="true" />
+                <element signature="e#1284#1285#0" expanded="true" />
+                <element signature="e#1340#1341#0" expanded="true" />
+                <element signature="e#1388#1389#0" expanded="true" />
+                <element signature="e#1429#1430#0" expanded="true" />
+                <element signature="e#1462#1463#0" expanded="true" />
+                <element signature="e#1518#1519#0" expanded="true" />
+                <element signature="e#1562#1563#0" expanded="true" />
                 <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-                <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+                <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+                <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+                <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+                <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Util.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Util.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="35" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="73" max-vertical-offset="595">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -123,16 +150,7 @@
       <file leaf-file-name="EventRecord.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EventRecord.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="24" selection-start="3207" selection-end="3207" vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2482">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileReadWrite.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FileReadWrite.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="33" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="527">
+            <state line="135" column="0" selection-start="3663" selection-end="3663" vertical-scroll-proportion="0.0" vertical-offset="1909" max-vertical-offset="2584">
               <folding />
             </state>
           </provider>
@@ -156,9 +174,10 @@
         <option value="$PROJECT_DIR$/src/FileReadWrite.java" />
         <option value="$PROJECT_DIR$/src/AttendanceReport.java" />
         <option value="$PROJECT_DIR$/src/DataBase.java" />
+        <option value="$PROJECT_DIR$/src/Util.java" />
         <option value="$PROJECT_DIR$/src/EventRecord.java" />
-        <option value="$PROJECT_DIR$/src/Employee.java" />
         <option value="$PROJECT_DIR$/src/Department.java" />
+        <option value="$PROJECT_DIR$/src/Employee.java" />
       </list>
     </option>
   </component>
@@ -245,7 +264,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -501,7 +520,11 @@
       <created>1407247097156</created>
       <updated>1407247097156</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Initial commit&#10;">
+      <created>1407333584130</created>
+      <updated>1407333584130</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -556,93 +579,32 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="22" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="969">
-          <folding>
-            <element signature="e#1164#1165#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1280#1281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="64" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="1003">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="27" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
-          <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
-            <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EventRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileReadWrite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="18" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AttendanceReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="918">
-          <folding>
-            <element signature="e#1164#1165#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1280#1281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="64" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="1003">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="22" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1020">
           <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
             <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -693,12 +655,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="5" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1020">
           <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
             <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,12 +727,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="52" column="5" selection-start="1151" selection-end="1151" vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1020">
           <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
             <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -805,12 +799,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="1" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="918">
           <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
             <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -861,12 +871,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="30" selection-start="437" selection-end="437" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="578">
           <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
             <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -958,13 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AttendanceReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="31" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="578">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="634" column="0" selection-start="23203" selection-end="23203" vertical-scroll-proportion="0.3325062" vertical-offset="10253" max-vertical-offset="19635">
@@ -972,9 +991,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/xmlbeans-2.3.0.jar!/org/apache/xmlbeans/impl/values/XmlObjectBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="480" column="25" selection-start="19977" selection-end="19977" vertical-scroll-proportion="0.33221477" vertical-offset="8044" max-vertical-offset="9639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-sources.jar!/org/apache/poi/xssf/usermodel/XSSFCellStyle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="0" selection-start="3909" selection-end="3909" vertical-scroll-proportion="0.3110465" vertical-offset="658" max-vertical-offset="24361">
+          <folding>
+            <element signature="e#3937#3938#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-sources.jar!/org/apache/poi/xssf/model/StylesTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="235" column="0" selection-start="7628" selection-end="7628" vertical-scroll-proportion="0.33139536" vertical-offset="3218" max-vertical-offset="8653">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-sources.jar!/org/apache/poi/xssf/usermodel/XSSFCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="510" column="0" selection-start="19309" selection-end="19309" vertical-scroll-proportion="0.0" vertical-offset="7691" max-vertical-offset="17374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../AttendanceReport/lib/poi-3.10-FINAL.jar!/org/apache/poi/ss/usermodel/Sheet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="18" selection-start="949" selection-end="949" vertical-scroll-proportion="-5.2" vertical-offset="499" max-vertical-offset="3910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-sources.jar!/org/apache/poi/xssf/usermodel/XSSFSheet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2078" column="5" selection-start="78556" selection-end="78556" vertical-scroll-proportion="0.0" vertical-offset="33190" max-vertical-offset="57341">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EventRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="0" selection-start="3663" selection-end="3663" vertical-scroll-proportion="0.0" vertical-offset="1909" max-vertical-offset="2584">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="35" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="73" max-vertical-offset="595">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL-sources.jar!/org/apache/poi/xssf/usermodel/XSSFRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="1579" selection-end="1579" vertical-scroll-proportion="0.33139536" vertical-offset="39" max-vertical-offset="8143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Department.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="44" selection-start="4673" selection-end="4673" vertical-scroll-proportion="0.0" vertical-offset="1858" max-vertical-offset="2788">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="56" selection-start="1541" selection-end="1541" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="2312">
+        <state line="134" column="1" selection-start="4324" selection-end="4324" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="2312">
           <folding>
             <element signature="e#1164#1165#0" expanded="true" />
             <element signature="e#1196#1197#0" expanded="true" />
@@ -984,32 +1079,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EventRecord.java">
+    <entry file="file://$PROJECT_DIR$/src/AttendanceReport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="24" selection-start="3207" selection-end="3207" vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2482">
+        <state line="24" column="0" selection-start="659" selection-end="659" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="408">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="36" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1632">
-          <folding>
-            <element signature="e#1479#1480#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1612#1613#0" expanded="true" />
-            <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
-            <element signature="method#countAbsence#0;class#Employee#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Department.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="8" selection-start="2746" selection-end="2746" vertical-scroll-proportion="0.56666666" vertical-offset="1377" max-vertical-offset="2006">
+        <state line="10" column="0" selection-start="337" selection-end="337" vertical-scroll-proportion="0.43589744" vertical-offset="0" max-vertical-offset="3366">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1048#1049#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1249#1250#0" expanded="true" />
+            <element signature="e#1284#1285#0" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1462#1463#0" expanded="true" />
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
+            <element signature="method#countLatenessAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countAbsenceAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftEarlyAndAddToSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countLeftLaterAndAddtoSheet#0;class#Employee#0" expanded="false" />
+            <element signature="method#countWorkOnHolidaysAndAddToSheet#0;class#Employee#0" expanded="false" />
           </folding>
         </state>
       </provider>

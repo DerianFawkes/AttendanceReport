@@ -1,4 +1,3 @@
-import org.apache.poi.ss.formula.functions.Count;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -75,7 +74,7 @@ public class Employee {
         }
     }
 
-    public Sheet addContentToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3) {
+    public Sheet addContentToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3, CellStyle cs4, CellStyle cs5, CellStyle cs6) {
 
         int lastrow = sheet.getLastRowNum();
         Row row = sheet.createRow(++lastrow);
@@ -85,12 +84,7 @@ public class Employee {
         cell = row.createCell(1);
         cell.setCellStyle(cs2);
         cell.setCellValue(this.getName());
-        sheet.addMergedRegion(new CellRangeAddress(
-                1, //first row (0-based)
-                1, //last row  (0-based)
-                1, //first column (0-based)
-                2  //last column  (0-based)
-        ));
+        sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 1,4));
 
         //подсчет и вывод опозданий от 16 минут до часа
         sheet = countLatenessAndAddToSheet(sheet, cs2, cs3, 9, 46, 10, 30, "Опоздания от 16 минут до часа: ");
@@ -100,8 +94,19 @@ public class Employee {
         sheet = countLatenessAndAddToSheet(sheet, cs2, cs3, 13, 31, 23, 59, "Опоздания свыше 4-х часов: ");
 
         //Подсчет Невыходов
-        sheet = countAbsence(sheet, cs2, cs3);
+        sheet = countAbsenceAndAddToSheet(sheet, cs2, cs3);
 
+        //Подсчет и вывод Ушел раньше
+        sheet = countLeftEarlyAndAddToSheet(sheet, cs2, cs3, 18, 00);
+
+        //Подсчет и вывод Ушел позже
+        sheet = countLeftLaterAndAddtoSheet(sheet, cs2, cs3, 18, 30);
+
+        //Подсчет и вывод Выходов в нерабочие дни
+        sheet = countWorkOnHolidaysAndAddToSheet(sheet, cs2, cs3);
+
+        //Таблица Детализации
+        sheet = addDetalisationTableToSheet(sheet, cs4, cs5, cs6);
         return sheet;
     }
 
@@ -120,28 +125,33 @@ public class Employee {
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Дата: " + item.getStringDate());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 4,5));
                 cell = row.createCell(6);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Время: " + item.getStringTime());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 6,7));
                 count++;
             }
         }
 
         sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
         sheet.getRow(rowIndexBuff).getCell(1).setCellValue(text + count);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexBuff, rowIndexBuff, 1,4));
 
         return sheet;
     }
 
     //Подсчет невыходов
-    private Sheet countAbsence(Sheet sheet, CellStyle cs2, CellStyle cs3) {
+    private Sheet countAbsenceAndAddToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3) {
         Row row;
         Cell cell;
         int lastrow = sheet.getLastRowNum()+1;
         int rowIndexBuff = lastrow;
         sheet.createRow(lastrow); //Оставляем строку пустой
         int count = 0;
-        GregorianCalendar comparingDate = DataBase.getFirstDate();
+        GregorianCalendar comparingDate = new GregorianCalendar(DataBase.getFirstDate().get(Calendar.YEAR),
+                                                                DataBase.getFirstDate().get(Calendar.MONTH),
+                                                                DataBase.getFirstDate().get(Calendar.DAY_OF_MONTH));
         GregorianCalendar lastDate = DataBase.getLastDate();
 
         int n = 0;
@@ -163,6 +173,7 @@ public class Employee {
                 cell = row.createCell(4);
                 cell.setCellStyle(cs3);
                 cell.setCellValue("Дата: " + fmt.toString());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 4,5));
                 fmt.close();
                 count++;
             }
@@ -172,6 +183,178 @@ public class Employee {
 
         sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
         sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Невыходов: " + count);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexBuff, rowIndexBuff, 1,4));
+
+        return sheet;
+    }
+
+    private Sheet countLeftEarlyAndAddToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3, int timeH, int timeM) {
+
+        int lastrow = sheet.getLastRowNum()+1;
+        int rowIndexBuff = lastrow; //буфер индекса строки, чтобы добавить количество опозданий
+        sheet.createRow(lastrow);//оставляем строку пустой, чтобы добавить количество после подсчета
+        int count = 0; //подсчет количества опозданий на определенное время
+        Row row;
+        Cell cell;
+        for (EventRecord item: eventRecords) {
+
+            if (item.isStatusEXIT() && item.isWorkDay() && item.isBefore(timeH, timeM)) {
+                row = sheet.createRow(++lastrow);
+                cell = row.createCell(4);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Дата: " + item.getStringDate());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 4,5));
+                cell = row.createCell(6);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Время: " + item.getStringTime());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 6,7));
+                count++;
+            }
+        }
+
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Ушел раньше: " + count);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexBuff, rowIndexBuff, 1,4));
+
+        return sheet;
+    }
+
+    private Sheet countLeftLaterAndAddtoSheet (Sheet sheet, CellStyle cs2, CellStyle cs3, int timeH, int timeM) {
+        int lastrow = sheet.getLastRowNum()+1;
+        int rowIndexBuff = lastrow; //буфер индекса строки, чтобы добавить количество опозданий
+        sheet.createRow(lastrow);//оставляем строку пустой, чтобы добавить количество после подсчета
+        int count = 0; //подсчет количества опозданий на определенное время
+        Row row;
+        Cell cell;
+        for (EventRecord item: eventRecords) {
+
+            if (item.isStatusEXIT() && item.isWorkDay() && item.isAfter(timeH, timeM)) {
+                row = sheet.createRow(++lastrow);
+                cell = row.createCell(4);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Дата: " + item.getStringDate());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 4,5));
+                cell = row.createCell(6);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Время: " + item.getStringTime());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 6,7));
+                count++;
+            }
+        }
+
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Ушел позже: " + count);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexBuff, rowIndexBuff, 1,4));
+
+        return sheet;
+    }
+
+    private Sheet countWorkOnHolidaysAndAddToSheet (Sheet sheet, CellStyle cs2, CellStyle cs3) {
+        int lastrow = sheet.getLastRowNum()+1;
+        int rowIndexBuff = lastrow; //буфер индекса строки, чтобы добавить количество опозданий
+        sheet.createRow(lastrow);//оставляем строку пустой, чтобы добавить количество после подсчета
+        int count = 0; //подсчет количества опозданий на определенное время
+        Row row;
+        Cell cell;
+        for (EventRecord item: eventRecords) {
+
+            if (!item.isWorkDay()) {
+                row = sheet.createRow(++lastrow);
+
+                cell = row.createCell(4);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Дата: " + item.getStringDate());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 4,5));
+                cell = row.createCell(6);
+                cell.setCellStyle(cs3);
+                cell.setCellValue("Время: " + item.getStringTime());
+                sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 6,7));
+                if(item.isStatusENTER()) {
+                    count++;
+                    cell = row.createCell(3);
+                    cell.setCellStyle(cs3);
+                    cell.setCellValue("Вход:");
+                } else {
+                    cell = row.createCell(3);
+                    cell.setCellStyle(cs3);
+                    cell.setCellValue("Выход:");
+                }
+
+            }
+        }
+
+        sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
+        sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Выходы в нерабочие дни: " + count);
+        sheet.addMergedRegion(new CellRangeAddress(rowIndexBuff, rowIndexBuff, 1,4));
+
+        return sheet;
+    }
+
+    private Sheet addDetalisationTableToSheet (Sheet sheet, CellStyle cs4, CellStyle cs5, CellStyle cs6) {
+        Row row;
+        Cell cell;
+        int lastrow = sheet.getLastRowNum();
+        row = sheet.createRow(++lastrow);
+        for (int i = 0; i <9; i++) {
+            row.createCell(i).setCellStyle(cs4);
+        }
+        row.getCell(0).setCellValue("Дата");
+        row.getCell(1).setCellValue("День недели");
+        row.getCell(2).setCellValue("Приход");
+        sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 2, 4));
+        row.getCell(5).setCellValue("Уход");
+        sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 5, 7));
+        row.getCell(8).setCellValue("Комментарий");
+        sheet.setColumnWidth(8, 8000);
+
+        row = sheet.createRow(++lastrow);
+        for (int i = 0; i <9; i++) {
+            row.createCell(i).setCellStyle(cs5);
+        }
+        row.getCell(2).setCellValue("Должен");
+        row.getCell(3).setCellValue("Факт.");
+        row.getCell(4).setCellValue("Расхожд.");
+        row.getCell(5).setCellValue("Должен");
+        row.getCell(6).setCellValue("Факт.");
+        row.getCell(7).setCellValue("Расхожд.");
+
+
+        GregorianCalendar comparingDate = new GregorianCalendar(DataBase.getFirstDate().get(Calendar.YEAR),
+                                                                DataBase.getFirstDate().get(Calendar.MONTH),
+                                                                DataBase.getFirstDate().get(Calendar.DAY_OF_MONTH));
+
+        GregorianCalendar lastDate = DataBase.getLastDate();
+
+        int startIndex = 0;
+        do {
+            row = sheet.createRow(++lastrow);
+            for (int i = 0; i <9; i++) {
+                cell = row.createCell(i);
+                cell.setCellStyle(cs6);
+            }
+            Formatter fmt = new Formatter();
+            fmt.format("%td.%tm.%tY", comparingDate, comparingDate, comparingDate);
+            row.getCell(0).setCellValue(fmt.toString());
+            fmt.close();
+            row.getCell(1).setCellValue(Util.getDayOfWeek(comparingDate));
+            boolean written = false;
+            for (int i = startIndex; i < eventRecords.size(); i++)
+            {
+                EventRecord er = eventRecords.get(i);
+                if (comparingDate.get(Calendar.DAY_OF_YEAR) == er.getDateAndTime().get(Calendar.DAY_OF_YEAR)) {
+                    if (er.isStatusENTER()) {
+                        row.getCell(3).setCellValue(er.getStringTime());
+                        startIndex = i;
+                        written = true;
+                    } else {
+                            row.getCell(6).setCellValue(er.getStringTime());
+                    }
+                } else if (comparingDate.get(Calendar.DAY_OF_YEAR) < er.getDateAndTime().get(Calendar.DAY_OF_YEAR)) {
+                    break;
+                }
+            }
+            comparingDate.add(Calendar.DAY_OF_YEAR, 1);
+        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) );
 
         return sheet;
     }
