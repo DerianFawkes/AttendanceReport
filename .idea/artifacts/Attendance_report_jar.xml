@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Attendance report:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Attendance_report_jar</output-path>
+    <root id="archive" name="Attendance report.jar">
+      <element id="module-output" name="Attendance report" />
+      <element id="extracted-dir" path="C:/Users/Dima/IdeaProjects/AttendanceReport/lib/poi-3.10-FINAL.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Users/Dima/IdeaProjects/AttendanceReport/lib/commons-codec-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-ooxml-3.10-FINAL.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-3.10-FINAL.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-codec-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/poi-ooxml-schemas-3.10-FINAL.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/xmlbeans-2.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/stax-api-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/dom4j-1.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/xml-apis-1.0.b2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -4,6 +4,8 @@
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,10 +13,23 @@ import java.io.IOException;
 public abstract class FileReadWrite {
 
     public static Workbook read(String path) throws IOException, InvalidFormatException {
+
         FileInputStream fileInputStream = new FileInputStream(path);
         Workbook wb = WorkbookFactory.create(fileInputStream);
         fileInputStream.close();
         return wb;
+
+
+    }
+
+    public static Workbook read(File file) throws IOException, InvalidFormatException {
+
+        FileInputStream fileInputStream = new FileInputStream(file);
+        Workbook wb = WorkbookFactory.create(fileInputStream);
+        fileInputStream.close();
+        return wb;
+
+
     }
 
     public static void write(Workbook wb, String path) throws IOException, InvalidFormatException {
@@ -22,4 +37,6 @@ public abstract class FileReadWrite {
         wb.write(fileOutputStream);
         fileOutputStream.close();
     }
+
+
 }
