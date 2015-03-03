@@ -74,17 +74,11 @@ public class Employee {
         }
     }
 
+    //Метод для наполнения листа данными для всех отделов, кроме склада
     public Sheet addContentToSheet(Sheet sheet, CellStyle cs2, CellStyle cs3, CellStyle cs4, CellStyle cs5, CellStyle cs6) {
 
-        int lastrow = sheet.getLastRowNum();
-        Row row = sheet.createRow(++lastrow);
-        Cell cell = row.createCell(0);
-        cell.setCellStyle(cs2);
-        cell.setCellValue("Сотрудник:");
-        cell = row.createCell(1);
-        cell.setCellStyle(cs2);
-        cell.setCellValue(this.getName());
-        sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 1,4));
+        //Добавление на лист имени сотрудника
+        sheet = addEmployeeName(sheet, cs2);
 
         //подсчет и вывод опозданий от 16 минут до часа
         sheet = countLatenessAndAddToSheet(sheet, cs2, cs3, 9, 46, 10, 30, "Опоздания от 16 минут до часа: ");
@@ -97,7 +91,7 @@ public class Employee {
         sheet = countAbsenceAndAddToSheet(sheet, cs2, cs3);
 
         //Подсчет и вывод Ушел раньше
-        sheet = countLeftEarlyAndAddToSheet(sheet, cs2, cs3, 18, 00);
+        sheet = countLeftEarlyAndAddToSheet(sheet, cs2, cs3, 17, 59);
 
         //Подсчет и вывод Ушел позже
         sheet = countLeftLaterAndAddtoSheet(sheet, cs2, cs3, 18, 30);
@@ -107,6 +101,30 @@ public class Employee {
 
         //Таблица Детализации
         sheet = addDetalisationTableToSheet(sheet, cs4, cs5, cs6);
+        return sheet;
+    }
+
+    //Метод для наполнения листа данными только по Складу
+    public Sheet addContentToSheetForStorage(Sheet sheet, CellStyle cs2, CellStyle cs3, CellStyle cs4) {
+        //Добавление на лист имени сотрудника
+        sheet = addEmployeeName(sheet, cs2);
+        //Добавление детализации
+        sheet = addDetalisationTableToSheet(sheet, cs2, cs3, cs4);
+        return sheet;
+    }
+
+    private Sheet addEmployeeName(Sheet sheet, CellStyle cs2) {
+
+        int lastrow = sheet.getLastRowNum();
+        Row row = sheet.createRow(++lastrow);
+        Cell cell = row.createCell(0);
+        cell.setCellStyle(cs2);
+        cell.setCellValue("Сотрудник:");
+        cell = row.createCell(1);
+        cell.setCellStyle(cs2);
+        cell.setCellValue(this.getName());
+        sheet.addMergedRegion(new CellRangeAddress(lastrow, lastrow, 1,4));
+
         return sheet;
     }
 
@@ -166,7 +184,7 @@ public class Employee {
                     break;
                 }
             }
-            if (!found && comparingDate.get(Calendar.DAY_OF_WEEK) != 1 && comparingDate.get(Calendar.DAY_OF_WEEK) != 7) {
+            if (!found && comparingDate.get(Calendar.DAY_OF_WEEK) != 1 && comparingDate.get(Calendar.DAY_OF_WEEK) != 7 && !Util.isHoliday(comparingDate)) {
                 Formatter fmt = new Formatter();
                 fmt.format("%td.%tm.%tY", comparingDate,comparingDate,comparingDate);
                 row = sheet.createRow(++lastrow);
@@ -179,7 +197,7 @@ public class Employee {
             }
 
             comparingDate.add(Calendar.DAY_OF_YEAR, 1);
-        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) );
+        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) && comparingDate.get(Calendar.YEAR) == lastDate.get(Calendar.YEAR));
 
         sheet.getRow(rowIndexBuff).createCell(1).setCellStyle(cs2);
         sheet.getRow(rowIndexBuff).getCell(1).setCellValue("Невыходов: " + count);
@@ -354,8 +372,10 @@ public class Employee {
                 }
             }
             comparingDate.add(Calendar.DAY_OF_YEAR, 1);
-        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) );
+        } while (comparingDate.get(Calendar.DAY_OF_YEAR) <= lastDate.get(Calendar.DAY_OF_YEAR) && comparingDate.get(Calendar.YEAR) == lastDate.get(Calendar.YEAR));
 
         return sheet;
     }
 }
+
+

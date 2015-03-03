@@ -91,14 +91,27 @@ public class EventRecord {
 
     public boolean isWorkDay() {
         if (dateAndTime.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY ||
-                dateAndTime.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                dateAndTime.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || isHoliday(dateAndTime)) {
             return false;
         } else {
             return true;
         }
     }
 
+    public boolean isHoliday (GregorianCalendar gc) {
+        if (gc.get(Calendar.MONTH) == 0) {
+            if ( gc.get(Calendar.DAY_OF_MONTH) < 10) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
 
+        }
+    }
 
     public void setStatus(Status status) {
         this.status = status;

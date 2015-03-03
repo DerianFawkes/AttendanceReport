@@ -1,6 +1,7 @@
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -14,14 +15,18 @@ public class DataBase {
     static final int START_ROW_INDEX = 1;
     public static GregorianCalendar firstDate = null;
     public static GregorianCalendar lastDate = null;
+    GUI refToGUI;
 
     
     Workbook workbook;
 
     ArrayList<Department> departments;
 
-    public DataBase(Workbook workbook) {
+    //Конструктор класса. Инициализирует поле workbook объектом workbook из прочтенного файла.
+    //Задает первую и последнюю даты из файла.
+    public DataBase(Workbook workbook, GUI gui) {
         this.workbook = workbook;
+        departments = new ArrayList();
         String firstDateString;
         String lastDateString;
         int lastRow = workbook.getSheetAt(0).getLastRowNum();
@@ -29,6 +34,7 @@ public class DataBase {
         firstDateString = workbook.getSheetAt(0).getRow(START_ROW_INDEX).getCell(DATE_COLUMN).getStringCellValue();
         firstDate = setFirstAndLastDate(firstDateString);
         lastDate = setFirstAndLastDate(lastDateString);
+        refToGUI = gui;
     }
 
     public static GregorianCalendar getFirstDate() {
@@ -39,6 +45,7 @@ public class DataBase {
         return lastDate;
     }
 
+    //Метод передается строка с датой из таблицы excel, которая преобразуется в объект GregorianCalendar
     private GregorianCalendar setFirstAndLastDate(String date) {
         GregorianCalendar gc;
         int day;
@@ -51,8 +58,9 @@ public class DataBase {
         gc = new GregorianCalendar(year, month, day);
         return gc;
     }
+    //Заполняет базу данных. Проходит по всем строкам в excel файле. Если встречает запись с названием отдела
+    //до сих пор не встречавшегося , то вносит его в список departments
     public void fillDataBase() {
-        departments = new ArrayList();
         Sheet sheet = workbook.getSheetAt(0);
         int lastRowIndex = sheet.getLastRowNum();
         for (int i = START_ROW_INDEX; i < lastRowIndex; i++) {
@@ -119,7 +127,26 @@ public class DataBase {
     }
 
     public void exportReports (String destinationFolder) throws IOException, InvalidFormatException {
+        int depvalue = departments.size();
+        final int step = 100/depvalue;
+
         for (Department currentdep:departments) {
+
+//            new Thread(new Runnable() {
+//                int currentProgress = 0;
+//                public void run() {
+//                    while (currentProgress <= 100) {
+//                        SwingUtilities.invokeLater(new Runnable() {
+//                            public void run() {
+//                                refToGUI.progressBar.setValue(currentProgress);
+//                            }
+//                        });
+//                        try { Thread.sleep(100); } catch (InterruptedException e) {}
+//                    }
+//                }
+//            }).start();
+
+            //currentdep.startSorting();
             if (!currentdep.getName().equals("СКЛАД")) {
                 Workbook wb = currentdep.createReportByDepartment();
                 String path = destinationFolder + currentdep.getName() + ".xlsx";
@@ -129,7 +156,9 @@ public class DataBase {
                 String path = destinationFolder + currentdep.getName() + ".xlsx";
                 FileReadWrite.write(wb, path);
             }
+
         }
+        refToGUI.progressBar.setValue(100);
     }
 
 }

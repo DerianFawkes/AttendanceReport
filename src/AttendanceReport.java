@@ -15,26 +15,27 @@ import java.io.IOException;
 
 public class AttendanceReport {
     public static DataBase dataBase;
-    public static void main(String[] args) throws IOException, InvalidFormatException{
+    static GUI newGUI;
+    static Settings settings;
 
+    public static void main(String[] args) throws IOException, InvalidFormatException{
+        importSettings();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createGUI();
             }
         });
-
-        //String destinationFolder = ".\\";
-
-        //dataBase = new DataBase(FileReadWrite.read(".\\Report.xls"));
-
-
-
-        //dataBase.fillDataBase();
-//dataBase.exportReports(destinationFolder);
-//dataBase.eventTest();
-}
+    }
 
 public static void createGUI() {
         GUI newGUI = new GUI();
         }
-        }
+
+    public static GUI getGUI() {
+        return newGUI;
+    }
+
+    public static void importSettings() throws IOException {
+        settings = new Settings();
+    }
+}

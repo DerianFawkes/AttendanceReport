@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public abstract class FileReadWrite {
 
+    //Метод для чтения файла(excel) по указаному пути path
     public static Workbook read(String path) throws IOException, InvalidFormatException {
 
         FileInputStream fileInputStream = new FileInputStream(path);
@@ -22,6 +23,7 @@ public abstract class FileReadWrite {
 
     }
 
+    //Метод для чтения файла(excel) по указаному пути path
     public static Workbook read(File file) throws IOException, InvalidFormatException {
 
         FileInputStream fileInputStream = new FileInputStream(file);
@@ -32,6 +34,7 @@ public abstract class FileReadWrite {
 
     }
 
+    //Метод для записи файла(-ов)(excel) по указаному пути path
     public static void write(Workbook wb, String path) throws IOException, InvalidFormatException {
         FileOutputStream fileOutputStream = new FileOutputStream(path);
         wb.write(fileOutputStream);
